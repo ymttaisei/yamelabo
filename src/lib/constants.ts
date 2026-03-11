@@ -7,7 +7,7 @@ export const SITE_DESCRIPTION =
 export const SITE_CATCHCOPY = "退職のお金、まるわかり。";
 
 // GA4 (set after creating GA4 property)
-export const GA4_MEASUREMENT_ID = "";
+export const GA4_MEASUREMENT_ID = "G-PW6WWCE24Y";
 
 // Contact (set after creating Google Form)
 export const CONTACT_FORM_URL = "";
