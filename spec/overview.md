@@ -15,8 +15,8 @@
 | Vercel | ymttaiseis-projects/yamelabo |
 | ドメイン管理 | ムームードメイン (goodlabs.jp) |
 | DNS | CNAME yamelabo → cname.vercel-dns.com |
-| GA4 | 未設定（constants.ts GA4_MEASUREMENT_ID = ""） |
-| Search Console | 未登録 |
+| GA4 | G-PW6WWCE24Y（設定済み） |
+| Search Console | 登録済み（verification meta tag設定済み） |
 | ASP | 未登録 |
 
 ## 技術スタック
@@ -30,7 +30,7 @@
 | 日付計算 | date-fns 4.1.0 |
 | アイコン | lucide-react |
 | デプロイ | Vercel Pro（GitHub push → 自動デプロイは未設定、CLI手動デプロイ） |
-| アナリティクス | Google Analytics 4（未設定） |
+| アナリティクス | Google Analytics 4（G-PW6WWCE24Y） |
 | DB | 不要（全計算クライアントサイド完結） |
 
 ### shadcn/ui Nova preset の注意点
@@ -58,6 +58,9 @@ yamelabo/
 │   │   ├── robots.ts
 │   │   ├── sitemap.ts
 │   │   ├── about/page.tsx
+│   │   ├── column/
+│   │   │   ├── page.tsx            # コラム一覧（SSG）
+│   │   │   └── [slug]/page.tsx     # コラム記事詳細（SSG, generateStaticParams）
 │   │   ├── tools/
 │   │   │   ├── unemployment-insurance/page.tsx
 │   │   │   ├── retirement-tax/page.tsx
@@ -70,6 +73,7 @@ yamelabo/
 │   │   │   └── ...                 # card, input, select, accordion, tabs, badge, etc.
 │   │   ├── layout/                 # header.tsx, footer.tsx
 │   │   ├── tools/                  # フォーム + 結果 + CTA + OtherTools
+│   │   ├── column/                 # 記事レンダラー + カード + CTA + TOC + 関連記事
 │   │   ├── daikou/                 # service-card, service-list, selection-guide
 │   │   └── seo/                    # json-ld.tsx
 │   ├── lib/
@@ -77,12 +81,16 @@ yamelabo/
 │   │   ├── types.ts                # 全型定義
 │   │   ├── utils.ts                # cn(), formatCurrency()
 │   │   ├── gtag.ts                 # GA4カスタムイベントヘルパー
+│   │   ├── column/
+│   │   │   └── types.ts            # 記事データ型（ArticleData, ArticleSection等）
 │   │   └── calculators/            # 計算ロジック純関数
 │   │       ├── unemployment-insurance.ts
 │   │       ├── retirement-tax.ts
 │   │       └── paid-leave.ts
 │   └── data/
-│       └── taishoku-services.ts    # 退職代行サービスデータ（11社、affiliateUrl全てnull）
+│       ├── taishoku-services.ts    # 退職代行サービスデータ（11社、affiliateUrl全てnull）
+│       └── articles/               # コラム記事データ（TypeScript）
+│           └── index.ts            # バレルファイル（getAllArticles, getArticleBySlug等）
 ├── spec/
 │   ├── overview.md                 # 本ファイル
 │   └── pages.md                    # 全ページ・コンポーネント一覧
@@ -133,6 +141,8 @@ yamelabo/
 |---|---|
 | `/` | WebSite + Organization |
 | `/tools/*` | WebApplication + BreadcrumbList + FAQPage |
+| `/column` | BreadcrumbList |
+| `/column/[slug]` | Article + BreadcrumbList + FAQPage |
 | `/taishoku-daikou` | ItemList + BreadcrumbList + FAQPage |
 | `/about` | BreadcrumbList |
 

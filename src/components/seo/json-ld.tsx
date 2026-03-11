@@ -91,6 +91,35 @@ export function faqJsonLd(
   };
 }
 
+export function articleJsonLd(opts: {
+  title: string;
+  description: string;
+  slug: string;
+  publishedAt: string;
+  updatedAt?: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: opts.title,
+    description: opts.description,
+    url: `${SITE_URL}/column/${opts.slug}`,
+    inLanguage: "ja",
+    datePublished: opts.publishedAt,
+    ...(opts.updatedAt ? { dateModified: opts.updatedAt } : {}),
+    author: {
+      "@type": "Organization",
+      name: SITE_NAME,
+      url: SITE_URL,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: SITE_NAME,
+      url: SITE_URL,
+    },
+  };
+}
+
 export function itemListJsonLd(
   items: { name: string; url?: string }[]
 ) {

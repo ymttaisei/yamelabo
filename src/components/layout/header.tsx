@@ -50,6 +50,13 @@ export function Header() {
           </DropdownMenu>
 
           <Link
+            href="/column"
+            className="cursor-pointer text-sm font-medium text-foreground/80 transition-colors duration-200 hover:text-foreground"
+          >
+            コラム
+          </Link>
+
+          <Link
             href="/taishoku-daikou"
             className="cursor-pointer text-sm font-medium text-foreground/80 transition-colors duration-200 hover:text-foreground"
           >
@@ -93,6 +100,13 @@ export function Header() {
 
               <div className="my-2 border-t" />
 
+              <Link
+                href="/column"
+                onClick={() => setOpen(false)}
+                className="cursor-pointer rounded-md px-2 py-2 text-sm font-medium transition-colors duration-200 hover:bg-accent"
+              >
+                コラム
+              </Link>
               <Link
                 href="/taishoku-daikou"
                 onClick={() => setOpen(false)}

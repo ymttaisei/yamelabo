@@ -9,6 +9,8 @@
 | `/tools/retirement-tax` | SSG | 退職金税金計算。フォーム + 結果 + FAQ(3問) |
 | `/tools/paid-leave` | SSG | 有給休暇計算。フォーム + 結果 + FAQ(3問) |
 | `/taishoku-daikou` | SSG | 退職代行比較。警告バナー + タブフィルタ + サービスカード11社 + 選び方ガイド + FAQ(4問) |
+| `/column` | SSG | コラム一覧。記事カードグリッド |
+| `/column/[slug]` | SSG (generateStaticParams) | コラム記事詳細。目次 + 記事本文 + ツールCTA + FAQ + 関連記事 |
 | `/about` | SSG | 免責事項・運営情報・プライバシーポリシー |
 
 ## コンポーネント一覧
@@ -38,10 +40,19 @@
 | service-list.tsx | Client | タブフィルタ（すべて/弁護士/労組/民間） |
 | selection-guide.tsx | Server | 退職代行の選び方ガイド |
 
+### column/
+| ファイル | 種別 | 概要 |
+|---|---|---|
+| article-body.tsx | Server | 記事本文レンダラー（段落/テーブル/タイムライン/コールアウト/チェックリスト/引用/番号リスト） |
+| article-card.tsx | Server | 記事一覧カード（カテゴリバッジ + タイトル + excerpt） |
+| article-tool-cta.tsx | Server | 記事内ツールCTA（3ツールへの導線、`<aside>`） |
+| related-articles.tsx | Server | 関連記事リンク（`<nav>`） |
+| table-of-contents.tsx | Client | 折りたたみ目次（aria-expanded対応） |
+
 ### seo/
 | ファイル | 種別 | 概要 |
 |---|---|---|
-| json-ld.tsx | Server | WebSite/Organization/WebApplication/Breadcrumb/FAQ/ItemList |
+| json-ld.tsx | Server | WebSite/Organization/WebApplication/Article/Breadcrumb/FAQ/ItemList |
 
 ## 計算ロジック (lib/calculators/)
 

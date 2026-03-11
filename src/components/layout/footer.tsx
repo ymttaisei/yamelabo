@@ -33,8 +33,24 @@ export function Footer() {
 
           {/* Support links */}
           <div>
-            <p className="text-sm font-semibold">サポート</p>
+            <p className="text-sm font-semibold">コンテンツ</p>
             <ul className="mt-2 space-y-1">
+              <li>
+                <Link
+                  href="/column"
+                  className="cursor-pointer text-sm text-muted-foreground transition-colors duration-200 hover:text-foreground"
+                >
+                  コラム
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/taishoku-daikou"
+                  className="cursor-pointer text-sm text-muted-foreground transition-colors duration-200 hover:text-foreground"
+                >
+                  退職代行比較
+                </Link>
+              </li>
               <li>
                 <Link
                   href="/about"

@@ -80,6 +80,26 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Column CTA */}
+      <section className="py-14 md:py-20">
+        <div className="mx-auto max-w-3xl px-4 text-center">
+          <h2 className="text-xl font-semibold">退職コラム</h2>
+          <p className="mt-3 leading-relaxed text-muted-foreground">
+            退職前にやるべき手続き、お金の仕組み、知っておきたい権利について解説しています。
+          </p>
+          <Link
+            href="/column"
+            className={cn(
+              buttonVariants({ variant: "outline", size: "lg" }),
+              "mt-6 cursor-pointer px-6 transition-all duration-200 hover:shadow-md"
+            )}
+          >
+            コラムを読む
+            <ArrowRight className="ml-1 h-4 w-4" />
+          </Link>
+        </div>
+      </section>
+
       {/* Daikou CTA */}
       <section className="py-14 md:py-20">
         <div className="mx-auto max-w-3xl px-4 text-center">
