@@ -6,17 +6,31 @@
 
 退職にまつわる計算ツール群（失業保険・退職金税金・有給休暇）で検索流入を獲得し、退職代行・転職アフィリエイトで収益化するメディア。
 
+## URL・インフラ
+
+| 項目 | 値 |
+|---|---|
+| 本番URL | https://yamelabo.goodlabs.jp |
+| GitHub | https://github.com/ymttaisei/yamelabo |
+| Vercel | ymttaiseis-projects/yamelabo |
+| ドメイン管理 | ムームードメイン (goodlabs.jp) |
+| DNS | CNAME yamelabo → cname.vercel-dns.com |
+| GA4 | 未設定（constants.ts GA4_MEASUREMENT_ID = ""） |
+| Search Console | 未登録 |
+| ASP | 未登録 |
+
 ## 技術スタック
 
 | レイヤー | 技術 |
 |---|---|
-| フレームワーク | Next.js 16 (App Router) + React 19 |
+| フレームワーク | Next.js 16.1.6 (App Router, Turbopack) + React 19.2.3 |
 | 言語 | TypeScript (strict) |
-| UI | shadcn/ui (Nova preset, base-ui) + Tailwind CSS v4 |
-| フォント | Noto Sans JP + Geist Sans + Geist Mono |
-| 日付計算 | date-fns |
-| デプロイ | Vercel Pro |
-| アナリティクス | Google Analytics 4 |
+| UI | shadcn/ui v4 (Nova preset, @base-ui/react) + Tailwind CSS v4 |
+| フォント | Noto Sans JP (400/500/700) + Geist Sans + Geist Mono |
+| 日付計算 | date-fns 4.1.0 |
+| アイコン | lucide-react |
+| デプロイ | Vercel Pro（GitHub push → 自動デプロイは未設定、CLI手動デプロイ） |
+| アナリティクス | Google Analytics 4（未設定） |
 | DB | 不要（全計算クライアントサイド完結） |
 
 ### shadcn/ui Nova preset の注意点
@@ -26,6 +40,12 @@
 - Accordion: `type="multiple"` ではなく `multiple` ブーリアンプロパティ
 - Select: `onValueChange` は `string | null` → `(v) => setState(v ?? "")` でラップ
 
+### Hydration対策
+- layout.tsx: 明示的 `<head>` タグ禁止（Next.js App Routerが自動管理）
+- GA4 Scriptタグは `<body>` 内に配置
+- `<html>` に `suppressHydrationWarning` 付与
+- paid-leave-form: `todayString()` は `useEffect` で遅延初期化（SSGビルド日 ≠ クライアント日付）
+
 ## ディレクトリ構成
 
 ```
@@ -34,7 +54,7 @@ yamelabo/
 │   ├── app/
 │   │   ├── layout.tsx              # ルートレイアウト（GA4, fonts, meta）
 │   │   ├── page.tsx                # トップページ
-│   │   ├── globals.css             # Tailwind v4テーマ
+│   │   ├── globals.css             # Tailwind v4テーマ（OKLchカラー）
 │   │   ├── robots.ts
 │   │   ├── sitemap.ts
 │   │   ├── about/page.tsx
@@ -45,15 +65,15 @@ yamelabo/
 │   │   └── taishoku-daikou/page.tsx
 │   ├── components/
 │   │   ├── ui/                     # shadcn/ui
-│   │   │   ├── button.tsx          # Button (base-ui)
+│   │   │   ├── button.tsx          # Button (@base-ui/react)
 │   │   │   ├── button-variants.ts  # CVA buttonVariants（サーバーコンポーネント用）
-│   │   │   └── ...                 # card, input, select, accordion, tabs, etc.
+│   │   │   └── ...                 # card, input, select, accordion, tabs, badge, etc.
 │   │   ├── layout/                 # header.tsx, footer.tsx
 │   │   ├── tools/                  # フォーム + 結果 + CTA + OtherTools
-│   │   ├── daikou/                 # 退職代行比較（service-card, service-list, selection-guide）
+│   │   ├── daikou/                 # service-card, service-list, selection-guide
 │   │   └── seo/                    # json-ld.tsx
 │   ├── lib/
-│   │   ├── constants.ts            # サイト定数 + 計算定数
+│   │   ├── constants.ts            # サイト定数 + 計算定数（毎年8/1改定マーク付き）
 │   │   ├── types.ts                # 全型定義
 │   │   ├── utils.ts                # cn(), formatCurrency()
 │   │   ├── gtag.ts                 # GA4カスタムイベントヘルパー
@@ -62,10 +82,10 @@ yamelabo/
 │   │       ├── retirement-tax.ts
 │   │       └── paid-leave.ts
 │   └── data/
-│       └── taishoku-services.ts    # 退職代行サービスデータ（11社）
+│       └── taishoku-services.ts    # 退職代行サービスデータ（11社、affiliateUrl全てnull）
 ├── spec/
 │   ├── overview.md                 # 本ファイル
-│   └── pages.md                    # 全ページ一覧
+│   └── pages.md                    # 全ページ・コンポーネント一覧
 └── tasks/
     └── todo.md                     # タスク管理
 ```
@@ -81,6 +101,24 @@ yamelabo/
 | Emerald | (Tailwindクラス直接) | emerald-50/500/600 | 金額ハイライト、チェックマーク |
 | Amber | (Tailwindクラス直接) | amber-50/300/800 | 警告バナー |
 
+## UIデザインパターン
+
+### 全ページ共通
+- グラデーションヘッダーセクション: `from-blue-50/80 to-white`, `py-10 md:py-14`
+- パンくずナビ: `<Link>` + `ChevronRight` + `aria-label="パンくずリスト"`
+- アイコン: `h-11 w-11 rounded-xl bg-primary/10` コンテナ内にLucideアイコン
+- コンテナ: `mx-auto max-w-2xl px-4`（退職代行は`max-w-3xl`、トップは`max-w-5xl`）
+
+### インタラクティブ要素
+- 全clickable要素: `cursor-pointer` 必須
+- ホバー: `transition-colors duration-200` または `transition-all duration-200`
+- CTAボタン: `shadow-md hover:shadow-lg hover:brightness-110`
+- カードホバー: `group-hover:-translate-y-1 group-hover:shadow-lg`
+- テキストリンク: `transition-colors duration-200 hover:text-foreground`
+
+### 警告バナー
+統一パターン: `rounded-lg border border-amber-300 bg-amber-50 text-amber-800`
+
 ## GA4カスタムイベント
 
 | イベント名 | パラメータ | 発火タイミング |
@@ -88,6 +126,15 @@ yamelabo/
 | tool_calculate | tool_name | 計算実行時 |
 | daikou_tab_change | tab | タブ切替時 |
 | affiliate_click | service_name | 公式サイトリンククリック時 |
+
+## SEO構造化データ
+
+| ページ | JSON-LDタイプ |
+|---|---|
+| `/` | WebSite + Organization |
+| `/tools/*` | WebApplication + BreadcrumbList + FAQPage |
+| `/taishoku-daikou` | ItemList + BreadcrumbList + FAQPage |
+| `/about` | BreadcrumbList |
 
 ## 完全仕様書
 
