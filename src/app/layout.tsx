@@ -43,8 +43,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja">
-      <head>
+    <html lang="ja" suppressHydrationWarning>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} ${notoSansJP.variable} antialiased`}
+      >
         {GA4_MEASUREMENT_ID && (
           <>
             <Script
@@ -61,10 +63,6 @@ export default function RootLayout({
             </Script>
           </>
         )}
-      </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} ${notoSansJP.variable} antialiased`}
-      >
         <Header />
         <main className="min-h-[calc(100vh-3.5rem)]">{children}</main>
         <Footer />

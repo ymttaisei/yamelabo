@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -30,7 +30,11 @@ function todayString(): string {
 
 export function PaidLeaveForm() {
   const [startDate, setStartDate] = useState("");
-  const [baseDate, setBaseDate] = useState(todayString());
+  const [baseDate, setBaseDate] = useState("");
+
+  useEffect(() => {
+    setBaseDate(todayString());
+  }, []);
   const [employmentType, setEmploymentType] =
     useState<EmploymentType>("fulltime");
   const [weeklyWorkDays, setWeeklyWorkDays] = useState("");
