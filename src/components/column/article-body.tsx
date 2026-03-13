@@ -274,31 +274,41 @@ function SectionContent({ section }: { section: ArticleSection }) {
       )}
 
       {section.subSections?.map((sub) => (
-        <div key={sub.id} id={sub.id} className="mt-6">
-          {/* H3 heading — outside card, BOXIL style: 20px/600/primary, bottom border */}
-          <h3 className="border-b border-border pb-2 text-xl font-semibold text-primary">
+        <div key={sub.id} id={sub.id} className="mt-10">
+          {/* H3 — BOXIL: 20px/600/teal, border-bottom. Adapted: primary color + bottom accent */}
+          <h3 className="border-b-2 border-primary/30 pb-2.5 text-[20px] font-semibold leading-snug text-primary">
             {sub.heading}
           </h3>
 
-          {/* Card body — BOXIL: 1px solid #e0e0e0, padding 24px, mt 24px, no radius/shadow */}
-          <div className="mt-6 border border-[#e0e0e0] p-6">
-            <Paragraphs content={sub.content} />
+          {/* Card — BOXIL: 1px solid #e0e0e0, 24px padding, no radius/shadow */}
+          <div className="mt-5 overflow-hidden border border-[#e0e0e0]">
+            {/* Primary accent top bar */}
+            <div className="h-1 bg-primary/20" />
 
+            {/* Description */}
+            <div className="px-6 pt-5 pb-4">
+              <Paragraphs content={sub.content} />
+            </div>
+
+            {/* Key-value list — zebra striped, BOXIL-style structured data */}
             {sub.list && (
-              <dl className="mt-4 divide-y divide-[#e0e0e0]">
+              <div className="border-t border-[#e0e0e0]">
                 {sub.list.map((item, i) => (
                   <div
                     key={i}
-                    className="py-3 text-[15px] leading-relaxed first:pt-0 last:pb-0"
+                    className={`px-6 py-3.5 text-[15px] leading-relaxed ${
+                      i % 2 === 0 ? "bg-[#f8f9fa]" : "bg-white"
+                    }`}
                   >
                     {formatInline(item)}
                   </div>
                 ))}
-              </dl>
+              </div>
             )}
 
+            {/* Callout — separated by top border */}
             {sub.callout && (
-              <div className="mt-4">
+              <div className="border-t border-[#e0e0e0] px-6 py-5">
                 <Callout callout={sub.callout} />
               </div>
             )}
