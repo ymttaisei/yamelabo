@@ -42,3 +42,10 @@ next-env.d.ts
 
 # claude skills (local only)
 .claude/skills/
+
+# playwright capture artifacts (dev only)
+/html/
+/mock/
+/screenshots/
+
+.vercel

@@ -16,6 +16,7 @@ import {
 } from "@/components/seo/json-ld";
 import { ArticleBody } from "@/components/column/article-body";
 import { ArticleToolCta } from "@/components/column/article-tool-cta";
+import { ArticleAfCta } from "@/components/column/article-af-cta";
 import { RelatedArticles } from "@/components/column/related-articles";
 import { TableOfContents } from "@/components/column/table-of-contents";
 import { CATEGORY_LABELS, CATEGORY_COLORS } from "@/lib/column/types";
@@ -161,6 +162,9 @@ export default async function ColumnArticlePage({ params }: PageProps) {
         {/* Tool CTA */}
         <ArticleToolCta />
 
+        {/* AF CTA */}
+        <ArticleAfCta />
+
         {/* FAQ */}
         {article.faq.length > 0 && (
           <section className="mt-14">
@@ -182,6 +186,9 @@ export default async function ColumnArticlePage({ params }: PageProps) {
 
         {/* Related articles */}
         <RelatedArticles articles={related} />
+
+        {/* Secondary AF CTA */}
+        <ArticleAfCta />
       </div>
     </>
   );

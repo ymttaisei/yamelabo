@@ -59,15 +59,55 @@ export type PaidLeaveResult = {
   firstGrantDate?: Date;
 };
 
+// --- Tenshoku Service (転職エージェント) ---
+export type TenshokuServiceType = "comprehensive" | "it-web" | "highclass" | "young";
+
+export type TenshokuService = {
+  id: string;
+  name: string;
+  type: TenshokuServiceType;
+  description: string;
+  features: string[];
+  affiliateUrl: string | null;
+  /** Moshimo impression pixel URL for tracking */
+  impressionUrl: string | null;
+  officialUrl: string;
+  recommended: boolean;
+  /** Path relative to /public, e.g. "/logos/recruit-agent.png". null = initial fallback */
+  logoUrl: string | null;
+  /** e.g. "200,000件以上" */
+  jobCount: string;
+  /** e.g. "全国" */
+  area: string;
+  /** Primary strength shown in specs, e.g. "業界最大級の求人数" */
+  strength: string;
+};
+
 // --- Taishoku Service (退職代行) ---
+export type TaishokuServiceType = "lawyer" | "union" | "private";
+
 export type TaishokuService = {
   id: string;
   name: string;
-  type: "lawyer" | "union" | "private";
+  type: TaishokuServiceType;
   price: number;
   features: string[];
   affiliateUrl: string | null;
+  /** Moshimo impression pixel URL for tracking */
+  impressionUrl: string | null;
   officialUrl: string;
   recommended: boolean;
   warning?: string;
+  /** Path relative to /public, e.g. "/logos/miyabi.png". null = initial fallback */
+  logoUrl: string | null;
+  /** Primary strength, e.g. "弁護士が直接対応、残業代請求も可" */
+  strength: string;
+  /** Response time, e.g. "即日対応", "最短30分" */
+  responseTime: string;
+  /** Consultation method, e.g. "LINE・電話・メール" */
+  consultationMethod: string;
+  /** Success rate, e.g. "100%". null = not disclosed */
+  successRate: string | null;
+  /** Refund policy, e.g. "全額返金保証". null = none */
+  refundPolicy: string | null;
 };

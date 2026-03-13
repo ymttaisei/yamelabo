@@ -26,6 +26,20 @@ export function Header() {
 
         {/* Desktop nav */}
         <nav className="hidden items-center gap-6 md:flex">
+          <Link
+            href="/"
+            className="cursor-pointer text-sm font-medium text-foreground/80 transition-colors duration-200 hover:text-foreground"
+          >
+            退職代行ランキング
+          </Link>
+
+          <Link
+            href="/tenshoku"
+            className="cursor-pointer text-sm font-medium text-foreground/80 transition-colors duration-200 hover:text-foreground"
+          >
+            転職エージェント比較
+          </Link>
+
           <DropdownMenu>
             <DropdownMenuTrigger
               className={cn(
@@ -33,7 +47,7 @@ export function Header() {
                 "text-sm font-medium"
               )}
             >
-              ツール
+              計算ツール
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               {TOOLS.map((tool) => (
@@ -57,13 +71,6 @@ export function Header() {
           </Link>
 
           <Link
-            href="/taishoku-daikou"
-            className="cursor-pointer text-sm font-medium text-foreground/80 transition-colors duration-200 hover:text-foreground"
-          >
-            退職代行比較
-          </Link>
-
-          <Link
             href="/about"
             className="cursor-pointer text-sm font-medium text-foreground/80 transition-colors duration-200 hover:text-foreground"
           >
@@ -84,6 +91,23 @@ export function Header() {
           </SheetTrigger>
           <SheetContent side="right" className="w-72">
             <nav className="mt-8 flex flex-col gap-4">
+              <Link
+                href="/"
+                onClick={() => setOpen(false)}
+                className="cursor-pointer rounded-md px-2 py-2 text-sm font-medium transition-colors duration-200 hover:bg-accent"
+              >
+                退職代行ランキング
+              </Link>
+              <Link
+                href="/tenshoku"
+                onClick={() => setOpen(false)}
+                className="cursor-pointer rounded-md px-2 py-2 text-sm font-medium transition-colors duration-200 hover:bg-accent"
+              >
+                転職エージェント比較
+              </Link>
+
+              <div className="my-2 border-t" />
+
               <p className="px-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                 計算ツール
               </p>
@@ -106,13 +130,6 @@ export function Header() {
                 className="cursor-pointer rounded-md px-2 py-2 text-sm font-medium transition-colors duration-200 hover:bg-accent"
               >
                 コラム
-              </Link>
-              <Link
-                href="/taishoku-daikou"
-                onClick={() => setOpen(false)}
-                className="cursor-pointer rounded-md px-2 py-2 text-sm font-medium transition-colors duration-200 hover:bg-accent"
-              >
-                退職代行比較
               </Link>
               <Link
                 href="/about"

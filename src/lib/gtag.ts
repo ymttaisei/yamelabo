@@ -4,7 +4,9 @@
 type GtagEvent = {
   tool_calculate: { tool_name: string };
   daikou_tab_change: { tab: string };
+  tenshoku_tab_change: { tab: string };
   affiliate_click: { service_name: string };
+  cta_click: { cta_type: string; cta_location: string };
 };
 
 export function sendEvent<K extends keyof GtagEvent>(

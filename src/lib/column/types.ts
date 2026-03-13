@@ -34,7 +34,13 @@ export interface ArticleSection {
   callout?: ArticleCallout;
   checklist?: ArticleChecklist;
   blockquote?: string;
-  subSections?: Array<{ id: string; heading: string; content: string }>;
+  subSections?: Array<{
+    id: string;
+    heading: string;
+    content: string;
+    list?: string[];
+    callout?: ArticleCallout;
+  }>;
 }
 
 export interface ArticleData {

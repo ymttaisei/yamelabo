@@ -25,7 +25,7 @@ const notoSansJP = Noto_Sans_JP({
 
 export const metadata: Metadata = {
   title: {
-    default: `${SITE_NAME}｜退職のお金、まるわかり。失業保険・退職金・有給休暇を無料計算`,
+    default: `${SITE_NAME}｜退職代行おすすめランキング・口コミ比較【2026年最新】`,
     template: `%s｜${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,

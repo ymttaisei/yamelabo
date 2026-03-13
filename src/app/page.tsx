@@ -2,48 +2,131 @@ import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button-variants";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { TOOLS, SITE_CATCHCOPY } from "@/lib/constants";
-import { JsonLd, websiteJsonLd, organizationJsonLd } from "@/components/seo/json-ld";
-import { Calculator, ArrowRight } from "lucide-react";
+import { TOOLS } from "@/lib/constants";
+import { JsonLd, websiteJsonLd, organizationJsonLd, itemListJsonLd, faqJsonLd, breadcrumbJsonLd } from "@/components/seo/json-ld";
+import { ArrowRight, Briefcase } from "lucide-react";
+import { TaishokuRankingList } from "@/components/daikou/ranking-list";
+import { SelectionGuide } from "@/components/daikou/selection-guide";
+import { taishokuServices } from "@/data/taishoku-services";
+import { HeroPatternC as HeroSection } from "@/components/home/hero-patterns/pattern-c";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+
+const faqs = [
+  {
+    question: "退職代行とは何ですか？",
+    answer:
+      "退職の意思を本人に代わって会社に伝えるサービスです。弁護士法人・労働組合・民間業者の3種類があります。",
+  },
+  {
+    question: "退職代行の料金相場は？",
+    answer:
+      "弁護士法人は3〜6万円、労働組合は2〜3万円、民間業者は2万円前後です。",
+  },
+  {
+    question: "弁護士と労働組合、どちらがいい？",
+    answer:
+      "残業代請求やハラスメントの損害賠償なども依頼したい場合は弁護士法人、退職だけならコスパの良い労働組合がおすすめです。",
+  },
+  {
+    question: "退職代行を使うとデメリットはありますか？",
+    answer:
+      "会社との関係が完全に切れるため、円満退職にはなりません。ただし法的には問題なく、転職先に知られることもありません。",
+  },
+  {
+    question: "即日退職は本当にできますか？",
+    answer:
+      "法律上は退職届提出から2週間で退職が成立しますが、退職代行を利用すれば即日から出社不要になるケースがほとんどです。有給休暇を消化する形で実質即日退職が可能です。",
+  },
+  {
+    question: "退職代行を使って会社から訴えられることはありますか？",
+    answer:
+      "退職は労働者の権利であり、退職代行の利用自体で訴えられることはまずありません。ただし、会社に損害を与えるような退職（引き継ぎなしで重大な損害が発生する場合等）はリスクがあるため、弁護士法人の利用をおすすめします。",
+  },
+];
 
 export default function Home() {
   return (
     <>
-      <JsonLd data={[websiteJsonLd(), organizationJsonLd()]} />
+      <JsonLd
+        data={[
+          websiteJsonLd(),
+          organizationJsonLd(),
+          itemListJsonLd(
+            taishokuServices.map((s) => ({ name: s.name, url: s.officialUrl }))
+          ),
+          faqJsonLd(faqs),
+        ]}
+      />
 
-      {/* Hero */}
-      <section className="relative overflow-hidden border-b bg-gradient-to-b from-blue-50/80 to-white py-20 md:py-28">
-        <div className="mx-auto max-w-3xl px-4 text-center">
-          <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10">
-            <Calculator className="h-8 w-8 text-primary" />
-          </div>
-          <h1 className="text-3xl font-bold tracking-tight md:text-5xl">
-            {SITE_CATCHCOPY}
-          </h1>
-          <p className="mx-auto mt-5 max-w-lg text-lg leading-relaxed text-muted-foreground">
-            失業保険・退職金・有給休暇を
-            <br className="sm:hidden" />
-            30秒で計算できる無料ツール
+      <HeroSection serviceCount={taishokuServices.length} />
+
+      {/* Promo banner */}
+      <div className="border-b bg-orange-50/60 py-2.5 text-center text-xs text-muted-foreground">
+        ※ 本ページにはプロモーションが含まれています
+      </div>
+
+      {/* Warning banner */}
+      <div className="mx-auto max-w-3xl px-4 pt-8">
+        <div className="rounded-lg border border-amber-300 bg-amber-50 p-4">
+          <p className="text-sm leading-relaxed text-amber-800">
+            <span className="font-semibold">ご注意：</span>
+            2026年2月、民間退職代行大手の代表が弁護士法違反で逮捕されました。当サイトでは弁護士法人・労働組合運営のサービスをおすすめしています。
           </p>
-          <Link
-            href="/tools/unemployment-insurance"
-            className={cn(
-              buttonVariants({ size: "lg" }),
-              "mt-8 cursor-pointer px-6 text-base shadow-md transition-all duration-200 hover:shadow-lg hover:brightness-110"
-            )}
-          >
-            失業保険を計算する
-            <ArrowRight className="ml-1 h-4 w-4" />
-          </Link>
+        </div>
+      </div>
+
+      {/* Ranking List */}
+      <section className="py-10 md:py-14">
+        <div className="mx-auto max-w-3xl px-4">
+          <h2 className="text-xl font-semibold md:text-2xl">
+            退職代行サービス ランキング一覧
+          </h2>
+          <div className="mt-6">
+            <TaishokuRankingList services={taishokuServices} />
+          </div>
         </div>
       </section>
 
-      {/* Tools */}
-      <section className="py-14 md:py-20">
+      {/* Selection Guide */}
+      <section className="border-t bg-white py-10 md:py-14">
+        <div className="mx-auto max-w-3xl px-4">
+          <SelectionGuide />
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="border-t py-10 md:py-14">
+        <div className="mx-auto max-w-3xl px-4">
+          <h2 className="mb-5 text-lg font-semibold">よくある質問</h2>
+          <Accordion multiple className="w-full">
+            {faqs.map((faq, i) => (
+              <AccordionItem key={i} value={`faq-${i}`}>
+                <AccordionTrigger className="cursor-pointer text-left text-sm">
+                  {faq.question}
+                </AccordionTrigger>
+                <AccordionContent className="text-sm leading-relaxed text-muted-foreground">
+                  {faq.answer}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+      </section>
+
+      {/* Tools CTA */}
+      <section className="border-t bg-white py-14 md:py-20">
         <div className="mx-auto max-w-5xl px-4">
           <h2 className="text-center text-xl font-semibold md:text-2xl">
-            無料で使える退職計算ツール
+            退職前にお金の計算はお済みですか？
           </h2>
+          <p className="mx-auto mt-3 max-w-lg text-center text-sm leading-relaxed text-muted-foreground">
+            失業保険・退職金・有給休暇を30秒で無料計算
+          </p>
           <div className="mt-10 grid gap-5 sm:grid-cols-3">
             {TOOLS.map((tool) => (
               <Link key={tool.href} href={tool.href} className="group cursor-pointer">
@@ -68,20 +151,30 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SEO Text */}
-      <section className="border-t bg-white py-14 md:py-20">
+      {/* Tenshoku Cross-sell CTA */}
+      <section className="border-t py-14 md:py-20">
         <div className="mx-auto max-w-3xl px-4">
-          <h2 className="text-xl font-semibold">
-            退職を考えたら、お金の不安をまず解消しましょう
-          </h2>
-          <p className="mt-4 leading-relaxed text-muted-foreground">
-            退職を決意したとき、多くの方が不安に感じるのが「退職後のお金」のこと。失業保険はいくらもらえる？退職金の手取りは？有給は何日残っている？ヤメラボなら、これらの疑問を30秒で解決できます。すべての計算は厚生労働省・国税庁の公式情報に基づいており、令和7年4月の法改正にも対応しています。
-          </p>
+          <div className="rounded-xl border-2 border-orange-200 bg-gradient-to-br from-orange-50/80 to-white p-6 text-center">
+            <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-xl bg-orange-100">
+              <Briefcase className="h-5 w-5 text-orange-600" />
+            </div>
+            <h2 className="mt-3 text-lg font-semibold">退職後のキャリアを考えるなら</h2>
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+              転職エージェント10社を求人数・サポート力で比較。すべて無料で利用できます。
+            </p>
+            <Link
+              href="/tenshoku"
+              className="mt-4 inline-flex cursor-pointer items-center gap-1 rounded-lg bg-orange-500 px-5 py-2.5 text-sm font-bold text-white shadow-md transition-all hover:bg-orange-600 hover:shadow-lg active:translate-y-px"
+            >
+              転職エージェントを比較する
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
         </div>
       </section>
 
       {/* Column CTA */}
-      <section className="py-14 md:py-20">
+      <section className="border-t bg-white py-14 md:py-20">
         <div className="mx-auto max-w-3xl px-4 text-center">
           <h2 className="text-xl font-semibold">退職コラム</h2>
           <p className="mt-3 leading-relaxed text-muted-foreground">
@@ -95,26 +188,6 @@ export default function Home() {
             )}
           >
             コラムを読む
-            <ArrowRight className="ml-1 h-4 w-4" />
-          </Link>
-        </div>
-      </section>
-
-      {/* Daikou CTA */}
-      <section className="py-14 md:py-20">
-        <div className="mx-auto max-w-3xl px-4 text-center">
-          <h2 className="text-xl font-semibold">退職でお悩みなら</h2>
-          <p className="mt-3 leading-relaxed text-muted-foreground">
-            退職の意思を会社に伝えるのが難しい方は、退職代行サービスの利用も選択肢の一つです。
-          </p>
-          <Link
-            href="/taishoku-daikou"
-            className={cn(
-              buttonVariants({ variant: "outline", size: "lg" }),
-              "mt-6 cursor-pointer px-6 transition-all duration-200 hover:shadow-md"
-            )}
-          >
-            退職代行サービスを比較する
             <ArrowRight className="ml-1 h-4 w-4" />
           </Link>
         </div>

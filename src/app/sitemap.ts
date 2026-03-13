@@ -9,6 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/tools/retirement-tax`, changeFrequency: "monthly", priority: 0.9 },
     { url: `${SITE_URL}/tools/paid-leave`, changeFrequency: "monthly", priority: 0.9 },
     { url: `${SITE_URL}/column`, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${SITE_URL}/tenshoku`, changeFrequency: "weekly", priority: 0.8 },
     { url: `${SITE_URL}/taishoku-daikou`, changeFrequency: "weekly", priority: 0.8 },
     { url: `${SITE_URL}/about`, changeFrequency: "yearly", priority: 0.3 },
   ];

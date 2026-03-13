@@ -14,10 +14,41 @@ export function Footer() {
             </p>
           </div>
 
-          {/* Tools links */}
+          {/* 退職代行 links */}
           <div>
-            <p className="text-sm font-semibold">ツール</p>
+            <p className="text-sm font-semibold">退職代行</p>
             <ul className="mt-2 space-y-1">
+              <li>
+                <Link
+                  href="/"
+                  className="cursor-pointer text-sm text-muted-foreground transition-colors duration-200 hover:text-foreground"
+                >
+                  おすすめランキング
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/taishoku-daikou"
+                  className="cursor-pointer text-sm text-muted-foreground transition-colors duration-200 hover:text-foreground"
+                >
+                  退職代行比較
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* サービス links */}
+          <div>
+            <p className="text-sm font-semibold">サービス</p>
+            <ul className="mt-2 space-y-1">
+              <li>
+                <Link
+                  href="/tenshoku"
+                  className="cursor-pointer text-sm text-muted-foreground transition-colors duration-200 hover:text-foreground"
+                >
+                  転職エージェント比較
+                </Link>
+              </li>
               {TOOLS.map((tool) => (
                 <li key={tool.href}>
                   <Link
@@ -28,27 +59,12 @@ export function Footer() {
                   </Link>
                 </li>
               ))}
-            </ul>
-          </div>
-
-          {/* Support links */}
-          <div>
-            <p className="text-sm font-semibold">コンテンツ</p>
-            <ul className="mt-2 space-y-1">
               <li>
                 <Link
                   href="/column"
                   className="cursor-pointer text-sm text-muted-foreground transition-colors duration-200 hover:text-foreground"
                 >
                   コラム
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/taishoku-daikou"
-                  className="cursor-pointer text-sm text-muted-foreground transition-colors duration-200 hover:text-foreground"
-                >
-                  退職代行比較
                 </Link>
               </li>
               <li>

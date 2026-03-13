@@ -17,7 +17,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { ChevronRight, Scale, ArrowRight } from "lucide-react";
+import { ChevronRight, Scale, ArrowRight, Briefcase } from "lucide-react";
 
 export const metadata: Metadata = {
   title:
@@ -126,8 +126,26 @@ export default function TaishokuDaikouPage() {
           </Accordion>
         </section>
 
+        {/* Cross-link: 転職エージェント */}
+        <div className="mt-12 rounded-xl border-2 border-orange-200 bg-gradient-to-r from-orange-50/80 to-white p-6 text-center">
+          <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-xl bg-orange-100">
+            <Briefcase className="h-5 w-5 text-orange-600" />
+          </div>
+          <h2 className="mt-3 text-lg font-semibold">退職後のキャリアを考えるなら</h2>
+          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+            転職エージェント10社を求人数・サポート力で比較。すべて無料で利用できます。
+          </p>
+          <Link
+            href="/tenshoku"
+            className="mt-4 inline-flex cursor-pointer items-center gap-1 rounded-lg bg-orange-500 px-5 py-2.5 text-sm font-bold text-white shadow-md transition-all hover:bg-orange-600 hover:shadow-lg active:translate-y-px"
+          >
+            転職エージェントを比較する
+            <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
+
         {/* Reverse CTA: tools */}
-        <div className="mt-12 rounded-xl border border-blue-200 bg-blue-50/80 p-6 text-center">
+        <div className="mt-5 rounded-xl border border-blue-200 bg-blue-50/80 p-6 text-center">
           <h2 className="text-lg font-semibold">
             退職前にお金の計算はお済みですか？
           </h2>

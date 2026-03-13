@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ChevronRight, BookOpen } from "lucide-react";
 import { JsonLd, breadcrumbJsonLd } from "@/components/seo/json-ld";
 import { ArticleCard } from "@/components/column/article-card";
+import { ArticleAfCta } from "@/components/column/article-af-cta";
 import { getAllArticles } from "@/data/articles";
 
 export const metadata: Metadata = {
@@ -84,6 +85,9 @@ export default function ColumnPage() {
             記事は近日公開予定です。
           </p>
         )}
+
+        {/* AF CTA */}
+        <ArticleAfCta />
       </div>
     </>
   );

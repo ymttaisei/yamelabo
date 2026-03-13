@@ -274,9 +274,35 @@ function SectionContent({ section }: { section: ArticleSection }) {
       )}
 
       {section.subSections?.map((sub) => (
-        <div key={sub.id} id={sub.id}>
-          <h3 className="mt-8 mb-3 text-lg font-bold">{sub.heading}</h3>
-          <Paragraphs content={sub.content} />
+        <div key={sub.id} id={sub.id} className="mt-6">
+          {/* H3 heading — outside card, BOXIL style: 20px/600/primary, bottom border */}
+          <h3 className="border-b border-border pb-2 text-xl font-semibold text-primary">
+            {sub.heading}
+          </h3>
+
+          {/* Card body — BOXIL: 1px solid #e0e0e0, padding 24px, mt 24px, no radius/shadow */}
+          <div className="mt-6 border border-[#e0e0e0] p-6">
+            <Paragraphs content={sub.content} />
+
+            {sub.list && (
+              <dl className="mt-4 divide-y divide-[#e0e0e0]">
+                {sub.list.map((item, i) => (
+                  <div
+                    key={i}
+                    className="py-3 text-[15px] leading-relaxed first:pt-0 last:pb-0"
+                  >
+                    {formatInline(item)}
+                  </div>
+                ))}
+              </dl>
+            )}
+
+            {sub.callout && (
+              <div className="mt-4">
+                <Callout callout={sub.callout} />
+              </div>
+            )}
+          </div>
         </div>
       ))}
     </section>

@@ -82,6 +82,11 @@ export function ServiceCard({ service }: Props) {
           公式サイトを見る
           <ExternalLink className="ml-1 h-3.5 w-3.5" />
         </a>
+        {/* Moshimo impression pixel */}
+        {service.impressionUrl && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={service.impressionUrl} width={1} height={1} style={{ border: "none" }} alt="" loading="lazy" />
+        )}
       </CardContent>
     </Card>
   );

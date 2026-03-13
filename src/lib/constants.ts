@@ -3,8 +3,8 @@ export const SITE_NAME = "ヤメラボ";
 export const SITE_NAME_EN = "YAMELABO";
 export const SITE_URL = "https://yamelabo.goodlabs.jp";
 export const SITE_DESCRIPTION =
-  "失業保険の給付額、退職金の手取り額、有給休暇の付与日数を30秒で無料計算できるツール集。厚生労働省・国税庁の公式情報に基づき、令和7年最新の法改正にも対応。退職を考えたら、まずお金の不安を解消しましょう。";
-export const SITE_CATCHCOPY = "退職のお金、まるわかり。";
+  "退職代行サービス11社を弁護士法人・労働組合・民間業者別に口コミ・料金・対応速度で徹底比較。2026年最新のおすすめランキングと選び方ガイドで、あなたに合った退職代行が見つかります。";
+export const SITE_CATCHCOPY = "退職代行の口コミ・ランキング・比較";
 
 // GA4 (set after creating GA4 property)
 export const GA4_MEASUREMENT_ID = "G-PW6WWCE24Y";
