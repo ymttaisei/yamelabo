@@ -1,6 +1,6 @@
 # ヤメラボ (YAMELABO) — サービス概要
 
-> 最終更新: 2026-03-12（退職代行口コミ・比較サイトへのリブランド完了後）
+> 最終更新: 2026-03-13（FACLOG デザイン完全再現完了後）
 
 ## コンセプト
 
@@ -102,7 +102,7 @@ yamelabo/
 │   ├── app/
 │   │   ├── layout.tsx              # ルートレイアウト（GA4, fonts, meta）
 │   │   ├── page.tsx                # トップページ
-│   │   ├── globals.css             # Tailwind v4テーマ（OKLchカラー）
+│   │   ├── globals.css             # Tailwind v4テーマ（FACLOGデザイントークン: hex値）
 │   │   ├── robots.ts              # robots.txt生成
 │   │   ├── sitemap.ts             # sitemap.xml生成（静的ページ + コラム記事）
 │   │   ├── about/page.tsx         # 免責事項・運営情報・プライバシーポリシー
@@ -182,7 +182,10 @@ yamelabo/
 ├── research/
 │   └── faclog/                     # ファクログ構造分析（参考資料）
 │       ├── analysis.md             # 構造分析レポート + ヤメラボへの反映方針
+│       ├── design-tokens.md        # Playwright抽出デザイントークン（全CSS値の真実源）
+│       ├── computed_styles.json    # 抽出生データ
 │       ├── capture.js              # Playwrightキャプチャスクリプト
+│       ├── scripts/extract_computed.js  # computed style抽出スクリプト
 │       ├── screenshots/            # 全7ページ × デスクトップ + モバイル = 14枚
 │       └── html/                   # 全7ページのレンダリング後HTML
 ├── spec/
@@ -238,37 +241,65 @@ type TaishokuService = { id: string; name: string; type: TaishokuServiceType; pr
 
 **ASP登録後の作業**: 各社の `affiliateUrl` をASP発行のトラッキングURLに差し替える。`affiliateUrl` が設定されている場合、`service-card.tsx` が自動的に `rel="nofollow noopener sponsored"` を付与する。
 
-## カラーパレット
+## カラーパレット（FACLOG デザイントークン準拠）
 
-| 役割 | CSS変数 | 値 | 用途 |
+> 2026-03-13 FACLOG完全再現。全値は `research/faclog/design-tokens.md` が真実源。
+
+| 役割 | CSS変数/クラス | 値 | 用途 |
 |------|---------|---|------|
-| Primary | --primary | oklch(0.546 0.245 262.88) Blue-600 | ヘッダー、フィルター、リンク |
-| CTA Orange | bg-orange-500 | Tailwind orange-500 | 転職エージェントCTA「公式サイトを見る」ボタン |
-| Secondary | --secondary | oklch(0.97 0.003 247.86) Slate-100系 | セカンダリボタン背景 |
-| Accent | --accent | oklch(0.97 0.003 247.86) Slate-100系 | アクセント背景 |
-| Background | --background | oklch(0.984 0.003 247.86) Slate-50 | ページ背景 |
-| Emerald | (Tailwindクラス直接) | emerald-50/500/600 | 金額ハイライト、チェックマーク、転職エージェント特徴 |
-| Amber | (Tailwindクラス直接) | amber-50/300/800 | 警告バナー、ハイクラスバッジ |
-| Purple | (Tailwindクラス直接) | purple-100/800 | IT・Webバッジ |
-| Blue | (Tailwindクラス直接) | blue-100/200/800 | 総合型バッジ、CTA背景 |
+| Primary | --primary | #0485c0 | 見出し、フィルターactive、リンク |
+| CTA Orange | --cta-orange / bg-[#ffa215] | #ffa215 | CTAボタン「公式サイトを見る」 |
+| CTA Teal | --cta-teal / bg-[#2bbfb1] | #2bbfb1 | カード内CTA、チェックマーク、ハイライト |
+| Background | --background | #edf4f6 | ページ背景 |
+| Card | --card | #ffffff | カード背景 |
+| Foreground | --foreground | #252525 | 本文テキスト |
+| Muted | --muted-foreground | #555555 | サブテキスト |
+| Border | --border | #d8d7d7 | ボーダー、CTAシャドウ |
+| Footer BG | --footer-bg | #0b4d64 | フッター背景 |
+| Destructive | --destructive | #ff5252 | エラー、おすすめバッジ |
+| h1 | text-[#0072a7] | #0072a7 | ランキングh1 |
+| h2 | text-[#0485c0] | #0485c0 | セクション見出し |
+| Article link | text-[#4f96f6] | #4f96f6 | 記事内リンク |
 
-## UIデザインパターン
+## UIデザインパターン（FACLOG準拠）
 
 ### 全ページ共通
-- グラデーションヘッダーセクション: `from-blue-50/80 to-white`, `py-10 md:py-14`
-- パンくずナビ: `<Link>` + `ChevronRight` + `aria-label="パンくずリスト"`
-- アイコン: `h-11 w-11 rounded-xl bg-primary/10` コンテナ内にLucideアイコン
-- コンテナ幅:
-  - ツールページ: `mx-auto max-w-2xl px-4`
-  - 転職/退職代行: `mx-auto max-w-3xl px-4`
-  - トップ: `mx-auto max-w-5xl px-4`
+- **ヘッダー**: 白bg、height 80px、fixed、z-80、shadow `0 4px 4px -2px #808080`
+- **フッター**: bg #0b4d64、text白、padding 50px TB / 100px LR
+- **ページ背景**: #edf4f6（ライトブルーティール）
+- **ヒーロー**: teal gradient（#0485c0→#2bbfb1）+ 白テキスト + イラスト
+- パンくずナビ: `<Link>` + `ChevronRight`
+- コンテナ幅: max-w-3xl (ランキング/転職) / max-w-5xl (トップ/ツール)
+
+### セクション見出し (h2)
+```
+text-[#0485c0] text-2xl font-bold leading-9 tracking-[2.4px] text-center
++ 下部にセンター装飾ライン
+```
+
+### ランキングカード
+- 白bg、角丸なし、左ボーダー4px #0485c0（top3）/ #d8d7d7（その他）
+- ランクバッジ: 番号入り丸 bg-[#0485c0]（top3）/ bg-gray-400
+- スペック表: ヘッダーセル bg-[#edf4f6]
+- 特徴タグ: border-[#2bbfb1]/30 bg-[#2bbfb1]/10 text-[#0b4d64]
+
+### CTAボタン
+```
+bg-[#ffa215] rounded-[3px] shadow-[3px_3px_0_0_#d8d7d7] font-bold text-white
+hover:bg-[#e8920d]
+```
+
+### フィルターピル
+```
+text-lg border-2 px-5 py-2 rounded-full
+Active: border-[#0485c0] bg-[#0485c0] text-white
+Inactive: border-[#d8d7d7] bg-white text-[#252525] hover:border-[#0485c0]
+```
 
 ### インタラクティブ要素
 - 全clickable要素: `cursor-pointer` **必須**
-- ホバー: `transition-colors duration-200` または `transition-all duration-200`
-- CTAボタン: `shadow-md hover:shadow-lg hover:brightness-110`
-- カードホバー: `group-hover:-translate-y-1 group-hover:shadow-lg`
-- テキストリンク: `transition-colors duration-200 hover:text-foreground`
+- ホバー: `transition-colors duration-200`
+- テキストリンク: `hover:text-[#0485c0]`
 
 ### 警告バナー
 統一パターン: `rounded-lg border border-amber-300 bg-amber-50 text-amber-800`
@@ -343,6 +374,28 @@ type TaishokuService = { id: string; name: string; type: TaishokuServiceType; pr
 | `/column/[各slug]` | monthly | 0.7 |
 
 ## ピボット履歴
+
+### 2026-03-13: FACLOG デザイン完全再現
+
+**背景**: 独自デザインでは比較サイトとしてのプロフェッショナル感が不足。FACLOG（faclog.jp）はファクタリング比較サイトのベストプラクティスであり、同じ比較サイト構造のデザインをヤメラボに適用。
+
+**手法**: Playwrightでcomputed styleを機械的に抽出 → 推測ゼロで再現。全ページのスクリーンショットQAで検証。
+
+**変更内容**:
+| 変更箇所 | Before | After |
+|---------|--------|-------|
+| globals.css | oklch カラー（ブルー系） | hex値（FACLOG抽出: #0485c0, #edf4f6, #252525） |
+| ヘッダー | sticky白 h-14 shadow-sm | fixed白 h-20 shadow #808080 |
+| フッター | 白bg | #0b4d64 ダークティール + 白テキスト |
+| ページ背景 | oklch slate-50系 | #edf4f6 ライトブルーティール |
+| ヒーロー | orange-50 + 複雑アニメーション | teal gradient + シンプル |
+| ランキングカード | rounded-xl shadow-sm Crown/メダル | flat左アクセント + 番号バッジ |
+| CTAボタン | rounded-lg bg-orange-500 | rounded-[3px] bg-[#ffa215] shadow-[3px_3px_0_0_#d8d7d7] |
+| フィルターピル | text-sm border | text-lg border-2 #0485c0 |
+| セクション見出し | text-xl font-semibold | text-2xl font-bold #0485c0 tracking-[2.4px] + 装飾ライン |
+| ツールヒーロー | from-blue-50/80 | teal gradient |
+
+**デザイントークン**: `research/faclog/design-tokens.md`（全CSS値の真実源）
 
 ### 2026-03-12: リブランド — 退職代行 口コミ・比較サイト化
 

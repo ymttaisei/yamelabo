@@ -53,9 +53,9 @@ export function PaidLeaveResultCard({ result }: Props) {
       <CardContent className="space-y-6 p-6">
         <div>
           <p className="text-sm text-muted-foreground">あなたの有給休暇</p>
-          <div className="mt-2 rounded-lg bg-emerald-50 p-4">
+          <div className="mt-2 rounded-lg bg-[#2bbfb1]/10 p-4">
             <p className="text-sm text-muted-foreground">最大保有日数</p>
-            <p className="text-3xl font-bold text-emerald-600">
+            <p className="text-3xl font-bold text-[#2bbfb1]">
               {result.maxDays}日
             </p>
             <p className="mt-1 text-sm text-muted-foreground">

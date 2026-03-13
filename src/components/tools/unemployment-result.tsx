@@ -13,9 +13,9 @@ export function UnemploymentResultCard({ result }: Props) {
       <CardContent className="space-y-6 p-6">
         <div>
           <p className="text-sm text-muted-foreground">あなたの失業保険</p>
-          <div className="mt-2 rounded-lg bg-emerald-50 p-4">
+          <div className="mt-2 rounded-lg bg-[#2bbfb1]/10 p-4">
             <p className="text-sm text-muted-foreground">総支給額（非課税）</p>
-            <p className="text-3xl font-bold text-emerald-600">
+            <p className="text-3xl font-bold text-[#2bbfb1]">
               {formatCurrency(result.totalAmount)}
             </p>
             <p className="mt-1 text-sm text-muted-foreground">

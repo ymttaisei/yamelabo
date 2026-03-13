@@ -48,38 +48,43 @@
 }
 
 :root {
-  --background: oklch(0.984 0.003 247.86);
-  --foreground: oklch(0.208 0.042 265.75);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.208 0.042 265.75);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.208 0.042 265.75);
-  --primary: oklch(0.546 0.245 262.88);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0.003 247.86);
-  --secondary-foreground: oklch(0.208 0.042 265.75);
-  --muted: oklch(0.97 0.003 247.86);
-  --muted-foreground: oklch(0.554 0.046 257.42);
-  --accent: oklch(0.97 0.003 247.86);
-  --accent-foreground: oklch(0.208 0.042 265.75);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0.01 247.86);
-  --input: oklch(0.922 0.01 247.86);
-  --ring: oklch(0.546 0.245 262.88);
-  --chart-1: oklch(0.546 0.245 262.88);
-  --chart-2: oklch(0.596 0.145 163.23);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.488 0.243 264.38);
-  --chart-5: oklch(0.424 0.199 265.638);
+  /* FACLOG design tokens — extracted 2026-03-13 */
+  --background: #edf4f6;
+  --foreground: #252525;
+  --card: #ffffff;
+  --card-foreground: #252525;
+  --popover: #ffffff;
+  --popover-foreground: #252525;
+  --primary: #0485c0;
+  --primary-foreground: #ffffff;
+  --secondary: #edf4f6;
+  --secondary-foreground: #252525;
+  --muted: #edf4f6;
+  --muted-foreground: #555555;
+  --accent: #edf4f6;
+  --accent-foreground: #252525;
+  --destructive: #ff5252;
+  --border: #d8d7d7;
+  --input: #d8d7d7;
+  --ring: #0485c0;
+  --chart-1: #0485c0;
+  --chart-2: #2bbfb1;
+  --chart-3: #ffa215;
+  --chart-4: #0072a7;
+  --chart-5: #0b4d64;
   --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.208 0.042 265.75);
-  --sidebar-primary: oklch(0.546 0.245 262.88);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0.003 247.86);
-  --sidebar-accent-foreground: oklch(0.208 0.042 265.75);
-  --sidebar-border: oklch(0.922 0.01 247.86);
-  --sidebar-ring: oklch(0.546 0.245 262.88);
+  --sidebar: #ffffff;
+  --sidebar-foreground: #252525;
+  --sidebar-primary: #0485c0;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #edf4f6;
+  --sidebar-accent-foreground: #252525;
+  --sidebar-border: #d8d7d7;
+  --sidebar-ring: #0485c0;
+  /* FACLOG CTA colors */
+  --cta-orange: #ffa215;
+  --cta-teal: #2bbfb1;
+  --footer-bg: #0b4d64;
 }
 
 @layer base {

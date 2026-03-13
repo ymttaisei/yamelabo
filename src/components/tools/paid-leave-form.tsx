@@ -173,7 +173,7 @@ export function PaidLeaveForm() {
             </div>
           )}
 
-          <Button onClick={handleCalculate} className="w-full cursor-pointer shadow-md transition-all duration-200 hover:shadow-lg hover:brightness-110">
+          <Button onClick={handleCalculate} className="w-full cursor-pointer rounded-[3px] bg-[#ffa215] font-bold text-white shadow-[3px_3px_0_0_#d8d7d7] transition-all hover:brightness-110">
             計算する
           </Button>
         </CardContent>

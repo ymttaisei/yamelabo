@@ -34,43 +34,43 @@ export default function ColumnPage() {
       />
 
       {/* Header */}
-      <section className="border-b bg-gradient-to-b from-blue-50/80 to-white py-10 md:py-14">
+      <section className="bg-[#edf4f6] py-10 md:py-14">
         <div className="mx-auto max-w-2xl px-4">
           <nav
             aria-label="パンくずリスト"
-            className="mb-4 flex items-center gap-1 text-sm text-muted-foreground"
+            className="mb-4 flex items-center gap-1 text-sm text-[#555555]"
           >
             <Link
               href="/"
-              className="cursor-pointer transition-colors duration-200 hover:text-foreground"
+              className="cursor-pointer transition-colors duration-200 hover:text-[#252525]"
             >
               ホーム
             </Link>
             <ChevronRight className="h-3.5 w-3.5" aria-hidden="true" />
-            <span className="text-foreground">コラム</span>
+            <span className="text-[#252525]">コラム</span>
           </nav>
 
           <div className="flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10">
-              <BookOpen className="h-5.5 w-5.5 text-primary" aria-hidden="true" />
+            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#0485c0]/10">
+              <BookOpen className="h-5.5 w-5.5 text-[#0485c0]" aria-hidden="true" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold tracking-tight md:text-3xl">
+              <h1 className="text-2xl font-bold leading-9 tracking-[2.4px] text-[#0485c0] md:text-3xl">
                 退職コラム
               </h1>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm text-[#555555]">
                 退職前に知っておきたい知識
               </p>
             </div>
           </div>
-          <p className="mt-4 leading-relaxed text-muted-foreground">
+          <p className="mt-4 leading-relaxed text-[#555555]">
             退職の手続き・お金・権利について、分かりやすく解説するコラム集です。
           </p>
         </div>
       </section>
 
       {/* Article list */}
-      <div className="mx-auto max-w-2xl px-4 py-10 md:py-14">
+      <div className="mx-auto max-w-2xl bg-[#edf4f6] px-4 py-10 md:py-14">
         {articles.length > 0 ? (
           <section aria-label="記事一覧">
             <h2 className="sr-only">記事一覧</h2>

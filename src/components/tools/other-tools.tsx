@@ -12,7 +12,7 @@ export function OtherTools({ currentPath }: OtherToolsProps) {
 
   return (
     <div>
-      <h2 className="text-lg font-semibold">他の退職計算ツール</h2>
+      <h2 className="text-center text-2xl font-bold leading-9 tracking-[2.4px] text-[#0485c0]">他の退職計算ツール</h2>
       <div className="mt-3 grid gap-3 sm:grid-cols-2">
         {otherTools.map((tool) => (
           <Link key={tool.href} href={tool.href} className="group cursor-pointer">
@@ -24,7 +24,7 @@ export function OtherTools({ currentPath }: OtherToolsProps) {
                 <p className="mt-1 text-sm text-muted-foreground">
                   {tool.description}
                 </p>
-                <p className="mt-2 flex items-center gap-1 text-sm font-medium text-primary transition-all duration-200 group-hover:gap-2">
+                <p className="mt-2 flex items-center gap-1 text-sm font-medium text-[#0485c0] transition-all duration-200 group-hover:gap-2">
                   計算する
                   <ArrowRight className="h-3.5 w-3.5" />
                 </p>

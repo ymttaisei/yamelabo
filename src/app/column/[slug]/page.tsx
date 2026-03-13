@@ -96,63 +96,65 @@ export default async function ColumnArticlePage({ params }: PageProps) {
       />
 
       {/* Header */}
-      <section className="border-b bg-gradient-to-b from-blue-50/80 to-white py-10 md:py-14">
+      <section className="bg-[#edf4f6] py-10 md:py-14">
         <div className="mx-auto max-w-2xl px-4">
           <nav
             aria-label="パンくずリスト"
-            className="mb-4 flex items-center gap-1 text-sm text-muted-foreground"
+            className="mb-4 flex items-center gap-1 text-sm text-[#555555]"
           >
             <Link
               href="/"
-              className="cursor-pointer transition-colors duration-200 hover:text-foreground"
+              className="cursor-pointer transition-colors duration-200 hover:text-[#252525]"
             >
               ホーム
             </Link>
             <ChevronRight className="h-3.5 w-3.5" aria-hidden="true" />
             <Link
               href="/column"
-              className="cursor-pointer transition-colors duration-200 hover:text-foreground"
+              className="cursor-pointer transition-colors duration-200 hover:text-[#252525]"
             >
               コラム
             </Link>
             <ChevronRight className="h-3.5 w-3.5" aria-hidden="true" />
-            <span className="text-foreground line-clamp-1">
+            <span className="text-[#252525] line-clamp-1">
               {article.meta.title}
             </span>
           </nav>
 
-          <div className="flex items-center gap-2">
-            <span
-              className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${CATEGORY_COLORS[article.meta.category]}`}
-            >
-              {CATEGORY_LABELS[article.meta.category]}
-            </span>
-          </div>
-
-          <h1 className="mt-3 text-2xl font-bold leading-tight tracking-tight md:text-3xl">
-            {article.meta.title}
-          </h1>
-
-          <div className="mt-4 flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
-            <span className="flex items-center gap-1">
-              <Calendar className="size-3.5" aria-hidden="true" />
-              {formatDate(article.meta.publishedAt)}
-            </span>
-            {article.meta.updatedAt && (
-              <span className="flex items-center gap-1">
-                更新: {formatDate(article.meta.updatedAt)}
+          <div className="mx-auto max-w-2xl rounded-lg bg-white p-6 md:p-8">
+            <div className="flex items-center gap-2">
+              <span
+                className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${CATEGORY_COLORS[article.meta.category]}`}
+              >
+                {CATEGORY_LABELS[article.meta.category]}
               </span>
-            )}
-            <span className="flex items-center gap-1">
-              <Clock className="size-3.5" aria-hidden="true" />
-              {article.meta.readingTime}分で読めます
-            </span>
+            </div>
+
+            <h1 className="mt-3 text-2xl font-bold leading-9 tracking-[2.4px] text-[#252525] md:text-3xl">
+              {article.meta.title}
+            </h1>
+
+            <div className="mt-4 flex flex-wrap items-center gap-4 text-sm text-[#555555]">
+              <span className="flex items-center gap-1">
+                <Calendar className="size-3.5" aria-hidden="true" />
+                {formatDate(article.meta.publishedAt)}
+              </span>
+              {article.meta.updatedAt && (
+                <span className="flex items-center gap-1">
+                  更新: {formatDate(article.meta.updatedAt)}
+                </span>
+              )}
+              <span className="flex items-center gap-1">
+                <Clock className="size-3.5" aria-hidden="true" />
+                {article.meta.readingTime}分で読めます
+              </span>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Body */}
-      <div className="mx-auto max-w-2xl px-4 py-10 md:py-14">
+      <div className="mx-auto max-w-2xl bg-[#edf4f6] px-4 py-10 md:py-14">
         {/* TOC */}
         <TableOfContents sections={article.sections} />
 
@@ -168,7 +170,7 @@ export default async function ColumnArticlePage({ params }: PageProps) {
         {/* FAQ */}
         {article.faq.length > 0 && (
           <section className="mt-14">
-            <h2 className="mb-5 text-lg font-semibold">よくある質問</h2>
+            <h2 className="mb-5 text-2xl font-bold leading-9 tracking-[2.4px] text-[#0485c0]">よくある質問</h2>
             <Accordion multiple className="w-full">
               {article.faq.map((faq, i) => (
                 <AccordionItem key={i} value={`faq-${i}`}>

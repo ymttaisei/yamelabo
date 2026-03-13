@@ -37,7 +37,7 @@ function formatInline(text: string): React.ReactNode[] {
       parts.push(
         <span
           key={key++}
-          className="underline decoration-primary/40 decoration-2 underline-offset-2"
+          className="underline decoration-[#0485c0]/40 decoration-2 underline-offset-2"
         >
           {match[3]}
         </span>
@@ -82,7 +82,7 @@ function DataTable({ table }: { table: ArticleTable }) {
           </caption>
         )}
         <thead>
-          <tr className="border-b-2 border-primary/20 bg-primary/10">
+          <tr className="border-b-2 border-[#0485c0]/20 bg-[#0485c0]/10">
             {table.headers.map((h, i) => (
               <th
                 key={i}
@@ -123,10 +123,10 @@ function Timeline({ timeline }: { timeline: ArticleTimeline }) {
       {timeline.items.map((item, i) => (
         <li key={i} className="relative flex gap-4 pb-6 last:pb-0">
           {i < timeline.items.length - 1 && (
-            <div className="absolute left-[19px] top-8 bottom-0 w-0.5 bg-primary/20" />
+            <div className="absolute left-[19px] top-8 bottom-0 w-0.5 bg-[#0485c0]/20" />
           )}
           <div className="flex shrink-0 flex-col items-center">
-            <div className="flex size-10 items-center justify-center rounded-full bg-primary/10 text-xs font-bold text-primary">
+            <div className="flex size-10 items-center justify-center rounded-full bg-[#0485c0]/10 text-xs font-bold text-[#0485c0]">
               {item.time}
             </div>
           </div>
@@ -150,21 +150,21 @@ function Timeline({ timeline }: { timeline: ArticleTimeline }) {
 
 const CALLOUT_STYLES = {
   tip: {
-    bg: "bg-emerald-50 border-emerald-200",
+    bg: "bg-[#2bbfb1]/10 border-[#2bbfb1]/30",
     icon: LightbulbIcon,
-    iconColor: "text-emerald-600",
+    iconColor: "text-[#2bbfb1]",
     label: "ポイント",
   },
   warning: {
-    bg: "bg-amber-50 border-amber-200",
+    bg: "bg-[#ffa215]/10 border-[#ffa215]/30",
     icon: AlertTriangleIcon,
-    iconColor: "text-amber-600",
+    iconColor: "text-[#ffa215]",
     label: "注意",
   },
   info: {
-    bg: "bg-blue-50 border-blue-200",
+    bg: "bg-[#0485c0]/10 border-[#0485c0]/30",
     icon: InfoIcon,
-    iconColor: "text-blue-600",
+    iconColor: "text-[#0485c0]",
     label: "情報",
   },
 } as const;
@@ -197,7 +197,7 @@ function Checklist({ checklist }: { checklist: ArticleChecklist }) {
       {checklist.items.map((item, i) => (
         <li key={i} className="flex items-start gap-2 text-[15px]">
           <CheckCircleIcon
-            className="mt-0.5 size-5 shrink-0 text-primary"
+            className="mt-0.5 size-5 shrink-0 text-[#2bbfb1]"
             aria-hidden="true"
           />
           <span>{item}</span>
@@ -220,7 +220,7 @@ function NumberedList({ items }: { items: string[] }) {
           className="flex items-start gap-3 text-[15px] leading-relaxed"
         >
           <span
-            className="flex size-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs font-bold text-primary"
+            className="flex size-6 shrink-0 items-center justify-center rounded-full bg-[#0485c0]/10 text-xs font-bold text-[#0485c0]"
             aria-hidden="true"
           >
             {i + 1}
@@ -239,11 +239,7 @@ function NumberedList({ items }: { items: string[] }) {
 function SectionContent({ section }: { section: ArticleSection }) {
   return (
     <section id={section.id}>
-      <h2 className="mt-12 mb-5 flex items-center gap-3 text-xl font-bold">
-        <span
-          className="h-7 w-1 shrink-0 rounded-full bg-primary"
-          aria-hidden="true"
-        />
+      <h2 className="mt-12 mb-5 border-b border-[#0485c0]/20 pb-3 text-2xl font-bold leading-9 tracking-[2.4px] text-[#0485c0]">
         {section.heading}
       </h2>
 
@@ -268,22 +264,22 @@ function SectionContent({ section }: { section: ArticleSection }) {
       {section.checklist && <Checklist checklist={section.checklist} />}
 
       {section.blockquote && (
-        <blockquote className="my-6 border-l-4 border-primary/30 bg-primary/10 py-3 pl-4 text-sm italic">
+        <blockquote className="my-6 border-l-4 border-[#0485c0]/30 bg-[#0485c0]/10 py-3 pl-4 text-sm italic">
           {section.blockquote}
         </blockquote>
       )}
 
       {section.subSections?.map((sub) => (
         <div key={sub.id} id={sub.id} className="mt-10">
-          {/* H3 — BOXIL: 20px/600/teal, border-bottom. Adapted: primary color + bottom accent */}
-          <h3 className="border-b-2 border-primary/30 pb-2.5 text-[20px] font-semibold leading-snug text-primary">
+          {/* H3 — FACLOG style: 18px bold, border-bottom accent */}
+          <h3 className="border-b-2 border-[#0485c0]/30 pb-2.5 text-[18px] font-bold leading-snug text-[#252525]">
             {sub.heading}
           </h3>
 
-          {/* Card — BOXIL: 1px solid #e0e0e0, 24px padding, no radius/shadow */}
+          {/* Card — FACLOG-styled card with top accent */}
           <div className="mt-5 overflow-hidden border border-[#e0e0e0]">
-            {/* Primary accent top bar */}
-            <div className="h-1 bg-primary/20" />
+            {/* FACLOG accent top bar */}
+            <div className="h-1 bg-[#0485c0]/20" />
 
             {/* Description */}
             <div className="px-6 pt-5 pb-4">

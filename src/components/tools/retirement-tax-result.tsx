@@ -14,9 +14,9 @@ export function RetirementTaxResultCard({ result, retirementPay }: Props) {
       <CardContent className="space-y-6 p-6">
         <div>
           <p className="text-sm text-muted-foreground">退職金の手取り額</p>
-          <div className="mt-2 rounded-lg bg-emerald-50 p-4">
+          <div className="mt-2 rounded-lg bg-[#2bbfb1]/10 p-4">
             <p className="text-sm text-muted-foreground">手取り額</p>
-            <p className="text-3xl font-bold text-emerald-600">
+            <p className="text-3xl font-bold text-[#2bbfb1]">
               {formatCurrency(result.takeHome)}
             </p>
             <p className="mt-1 text-sm text-muted-foreground">

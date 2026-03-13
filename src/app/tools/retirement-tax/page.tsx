@@ -59,28 +59,28 @@ export default function RetirementTaxPage() {
       />
 
       {/* Header */}
-      <section className="border-b bg-gradient-to-b from-blue-50/80 to-white py-10 md:py-14">
+      <section className="bg-gradient-to-r from-[#0485c0] to-[#2bbfb1] py-10 md:py-14">
         <div className="mx-auto max-w-2xl px-4">
-          <nav aria-label="パンくずリスト" className="mb-4 flex items-center gap-1 text-sm text-muted-foreground">
-            <Link href="/" className="cursor-pointer transition-colors duration-200 hover:text-foreground">
+          <nav aria-label="パンくずリスト" className="mb-4 flex items-center gap-1 text-sm text-white/80">
+            <Link href="/" className="cursor-pointer transition-colors duration-200 hover:text-white">
               ホーム
             </Link>
             <ChevronRight className="h-3.5 w-3.5" />
-            <span className="text-foreground">退職金税金計算</span>
+            <span className="text-white">退職金税金計算</span>
           </nav>
 
           <div className="flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10">
-              <Receipt className="h-5.5 w-5.5 text-primary" />
+            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/20">
+              <Receipt className="h-5.5 w-5.5 text-white" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold tracking-tight md:text-3xl">
+              <h1 className="text-2xl font-bold tracking-tight text-white md:text-3xl">
                 退職金の手取り計算シミュレーター
               </h1>
-              <p className="text-sm text-muted-foreground">2026年最新版</p>
+              <p className="text-sm text-white/80">2026年最新版</p>
             </div>
           </div>
-          <p className="mt-4 leading-relaxed text-muted-foreground">
+          <p className="mt-4 leading-relaxed text-white/90">
             退職金額と勤続年数を入力するだけで、税金の内訳と手取り額を自動計算します。
           </p>
         </div>
@@ -90,7 +90,7 @@ export default function RetirementTaxPage() {
         <RetirementTaxForm />
 
         <section className="mt-14">
-          <h2 className="mb-5 text-lg font-semibold">よくある質問</h2>
+          <h2 className="mb-5 text-center text-2xl font-bold leading-9 tracking-[2.4px] text-[#0485c0]">よくある質問</h2>
           <Accordion multiple className="w-full">
             {faqs.map((faq, i) => (
               <AccordionItem key={i} value={`faq-${i}`}>

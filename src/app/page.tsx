@@ -49,6 +49,17 @@ const faqs = [
   },
 ];
 
+function SectionHeading({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="mb-10 text-center">
+      <h2 className="relative inline-block text-2xl font-bold leading-9 tracking-[2.4px] text-[#0485c0]">
+        {children}
+        <span className="absolute -bottom-2 left-1/2 h-[3px] w-12 -translate-x-1/2 bg-[#0485c0]" />
+      </h2>
+    </div>
+  );
+}
+
 export default function Home() {
   return (
     <>
@@ -66,7 +77,7 @@ export default function Home() {
       <HeroSection serviceCount={taishokuServices.length} />
 
       {/* Promo banner */}
-      <div className="border-b bg-orange-50/60 py-2.5 text-center text-xs text-muted-foreground">
+      <div className="border-b bg-orange-50/60 py-2.5 text-center text-xs text-[#999999]">
         ※ 本ページにはプロモーションが含まれています
       </div>
 
@@ -81,11 +92,9 @@ export default function Home() {
       </div>
 
       {/* Ranking List */}
-      <section className="py-10 md:py-14">
+      <section className="bg-[#edf4f6] py-10 md:py-14">
         <div className="mx-auto max-w-3xl px-4">
-          <h2 className="text-xl font-semibold md:text-2xl">
-            退職代行サービス ランキング一覧
-          </h2>
+          <SectionHeading>退職代行サービス ランキング一覧</SectionHeading>
           <div className="mt-6">
             <TaishokuRankingList services={taishokuServices} />
           </div>
@@ -93,20 +102,20 @@ export default function Home() {
       </section>
 
       {/* Selection Guide */}
-      <section className="border-t bg-white py-10 md:py-14">
+      <section className="bg-white py-10 md:py-14">
         <div className="mx-auto max-w-3xl px-4">
           <SelectionGuide />
         </div>
       </section>
 
       {/* FAQ */}
-      <section className="border-t py-10 md:py-14">
+      <section className="bg-[#edf4f6] py-10 md:py-14">
         <div className="mx-auto max-w-3xl px-4">
-          <h2 className="mb-5 text-lg font-semibold">よくある質問</h2>
+          <SectionHeading>よくある質問</SectionHeading>
           <Accordion multiple className="w-full">
             {faqs.map((faq, i) => (
               <AccordionItem key={i} value={`faq-${i}`}>
-                <AccordionTrigger className="cursor-pointer text-left text-sm">
+                <AccordionTrigger className="cursor-pointer text-left text-sm font-semibold text-[#252525]">
                   {faq.question}
                 </AccordionTrigger>
                 <AccordionContent className="text-sm leading-relaxed text-muted-foreground">
@@ -119,27 +128,25 @@ export default function Home() {
       </section>
 
       {/* Tools CTA */}
-      <section className="border-t bg-white py-14 md:py-20">
+      <section className="bg-white py-14 md:py-20">
         <div className="mx-auto max-w-5xl px-4">
-          <h2 className="text-center text-xl font-semibold md:text-2xl">
-            退職前にお金の計算はお済みですか？
-          </h2>
-          <p className="mx-auto mt-3 max-w-lg text-center text-sm leading-relaxed text-muted-foreground">
+          <SectionHeading>退職前にお金の計算はお済みですか？</SectionHeading>
+          <p className="mx-auto -mt-4 mb-10 max-w-lg text-center text-sm leading-relaxed text-muted-foreground">
             失業保険・退職金・有給休暇を30秒で無料計算
           </p>
-          <div className="mt-10 grid gap-5 sm:grid-cols-3">
+          <div className="grid gap-5 sm:grid-cols-3">
             {TOOLS.map((tool) => (
               <Link key={tool.href} href={tool.href} className="group cursor-pointer">
-                <Card className="h-full border transition-all duration-200 group-hover:-translate-y-1 group-hover:shadow-lg">
+                <Card className="h-full border transition-all duration-200 group-hover:-translate-y-1 group-hover:border-[#0485c0] group-hover:shadow-lg">
                   <CardContent className="flex h-full flex-col p-6">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/5 text-2xl transition-colors duration-200 group-hover:bg-primary/10">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#0485c0]/5 text-2xl transition-colors duration-200 group-hover:bg-[#0485c0]/10">
                       {tool.emoji}
                     </div>
                     <h3 className="mt-4 text-lg font-semibold">{tool.name}</h3>
                     <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
                       {tool.description}
                     </p>
-                    <p className="mt-4 flex items-center gap-1 text-sm font-medium text-primary transition-all duration-200 group-hover:gap-2">
+                    <p className="mt-4 flex items-center gap-1 text-sm font-medium text-[#0485c0] transition-all duration-200 group-hover:gap-2">
                       計算する
                       <ArrowRight className="h-3.5 w-3.5" />
                     </p>
@@ -152,11 +159,11 @@ export default function Home() {
       </section>
 
       {/* Tenshoku Cross-sell CTA */}
-      <section className="border-t py-14 md:py-20">
+      <section className="bg-[#edf4f6] py-14 md:py-20">
         <div className="mx-auto max-w-3xl px-4">
-          <div className="rounded-xl border-2 border-orange-200 bg-gradient-to-br from-orange-50/80 to-white p-6 text-center">
-            <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-xl bg-orange-100">
-              <Briefcase className="h-5 w-5 text-orange-600" />
+          <div className="rounded-xl border-2 border-[#0485c0]/20 bg-gradient-to-br from-[#edf4f6] to-white p-6 text-center">
+            <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-xl bg-[#0485c0]/10">
+              <Briefcase className="h-5 w-5 text-[#0485c0]" />
             </div>
             <h2 className="mt-3 text-lg font-semibold">退職後のキャリアを考えるなら</h2>
             <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
@@ -164,7 +171,7 @@ export default function Home() {
             </p>
             <Link
               href="/tenshoku"
-              className="mt-4 inline-flex cursor-pointer items-center gap-1 rounded-lg bg-orange-500 px-5 py-2.5 text-sm font-bold text-white shadow-md transition-all hover:bg-orange-600 hover:shadow-lg active:translate-y-px"
+              className="mt-4 inline-flex cursor-pointer items-center gap-1 rounded-[3px] bg-[#ffa215] px-5 py-2.5 text-sm font-bold text-white shadow-[3px_3px_0_0_#d8d7d7] transition-all hover:brightness-110 active:translate-y-px active:shadow-[1px_1px_0_0_#d8d7d7]"
             >
               転職エージェントを比較する
               <ArrowRight className="h-4 w-4" />
@@ -174,10 +181,10 @@ export default function Home() {
       </section>
 
       {/* Column CTA */}
-      <section className="border-t bg-white py-14 md:py-20">
+      <section className="bg-white py-14 md:py-20">
         <div className="mx-auto max-w-3xl px-4 text-center">
-          <h2 className="text-xl font-semibold">退職コラム</h2>
-          <p className="mt-3 leading-relaxed text-muted-foreground">
+          <SectionHeading>退職コラム</SectionHeading>
+          <p className="-mt-4 leading-relaxed text-muted-foreground">
             退職前にやるべき手続き、お金の仕組み、知っておきたい権利について解説しています。
           </p>
           <Link

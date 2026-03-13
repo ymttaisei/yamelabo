@@ -18,24 +18,27 @@ export function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80 shadow-sm">
-      <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-4">
-        <Link href="/" className="cursor-pointer text-xl font-bold text-primary transition-opacity duration-200 hover:opacity-80">
+    <header className="fixed top-0 z-[80] w-full bg-white">
+      <div className="flex h-20 items-center justify-between shadow-[0_4px_4px_-2px_#808080]">
+        <Link
+          href="/"
+          className="cursor-pointer pl-6 text-xl font-bold text-primary transition-opacity duration-200 hover:opacity-80 md:pl-14"
+        >
           ヤメラボ
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden items-center gap-6 md:flex">
+        <nav className="hidden items-center gap-6 pr-6 md:flex md:pr-14">
           <Link
             href="/"
-            className="cursor-pointer text-sm font-medium text-foreground/80 transition-colors duration-200 hover:text-foreground"
+            className="cursor-pointer text-base font-normal text-[#252525] transition-colors duration-200 hover:text-primary"
           >
             退職代行ランキング
           </Link>
 
           <Link
             href="/tenshoku"
-            className="cursor-pointer text-sm font-medium text-foreground/80 transition-colors duration-200 hover:text-foreground"
+            className="cursor-pointer text-base font-normal text-[#252525] transition-colors duration-200 hover:text-primary"
           >
             転職エージェント比較
           </Link>
@@ -44,7 +47,7 @@ export function Header() {
             <DropdownMenuTrigger
               className={cn(
                 buttonVariants({ variant: "ghost" }),
-                "text-sm font-medium"
+                "text-base font-normal text-[#252525]"
               )}
             >
               計算ツール
@@ -65,14 +68,14 @@ export function Header() {
 
           <Link
             href="/column"
-            className="cursor-pointer text-sm font-medium text-foreground/80 transition-colors duration-200 hover:text-foreground"
+            className="cursor-pointer text-base font-normal text-[#252525] transition-colors duration-200 hover:text-primary"
           >
             コラム
           </Link>
 
           <Link
             href="/about"
-            className="cursor-pointer text-sm font-medium text-foreground/80 transition-colors duration-200 hover:text-foreground"
+            className="cursor-pointer text-base font-normal text-[#252525] transition-colors duration-200 hover:text-primary"
           >
             About
           </Link>
@@ -83,7 +86,7 @@ export function Header() {
           <SheetTrigger
             className={cn(
               buttonVariants({ variant: "ghost", size: "icon" }),
-              "md:hidden"
+              "mr-4 md:hidden"
             )}
             aria-label="メニューを開く"
           >
